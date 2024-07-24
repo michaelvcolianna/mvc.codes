@@ -14,13 +14,13 @@ export default defineConfig({
       components: {
         card: 'components/storyblok/Card',
         cardSection: 'components/storyblok/CardSection',
-        experienceItem: 'components/storyblok/ExperienceItem',
         experienceSection: 'components/storyblok/ExperienceSection',
         hero: 'components/storyblok/Hero',
         page: 'components/storyblok/Page',
         portfolioItem: 'components/storyblok/PortfolioItem',
         portfolioSection: 'components/storyblok/PortfolioSection',
         simpleHeader: 'components/storyblok/SimpleHeader',
+        socialSection: 'components/storyblok/SocialSection',
       },
       apiOptions: {
         region: 'us',

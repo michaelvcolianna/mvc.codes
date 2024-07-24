@@ -2,7 +2,61 @@
 import { storyblokEditable } from '@storyblok/astro'
 
 const { blok } = Astro.props
+
+const companies = []
+const positions = []
+const years = []
+
+if (blok.items.length > 0) {
+  blok.items.map((item) => {
+    companies.push({
+      name: item.name,
+      location: item.location,
+    })
+
+    positions.push(item.position)
+
+    years.push(item.years)
+  })
+}
 ---
 
-<div><strong>{blok.component}</strong></div>
-<pre {...storyblokEditable(blok)}>{JSON.stringify(blok, null, 2)}</pre>
+<section {...storyblokEditable(blok)} class="py-10 md:py-16">
+  <div class="container max-w-screen-xl mx-auto px-4">
+    {blok.title && (
+      <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>
+    )}
+
+    {blok.description && (
+      <p class="font-normal text-gray-500 text-xs md:text-base mb-20">{blok.description}</p>
+    )}
+
+    {blok.items.length > 0 && (
+      <div class="flex flex-col lg:flex-row justify-between">
+        <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          <div class="font-medium text-gray-400 text-base uppercase">Company</div>
+
+          {companies.map((company) => (
+            <p class="font-semibold text-gray-600 text-base">{company.name} <span class="font-normal text-gray-300">/ {company.location}</span></p>
+          ))}
+        </div>
+
+        <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          <div class="font-medium text-gray-400 text-base uppercase">Position</div>
+
+          {positions.map((position) => (
+            <p class="font-normal text-gray-400 text-base">{position}</p>
+          ))}
+        </div>
+
+        <div class="space-y-8 md:space-y-16">
+          <div class="font-medium text-gray-400 text-base uppercase">Term</div>
+
+          {years.map((year) => (
+            <p class="font-normal text-gray-400 text-base">{year}</p>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
