@@ -4,4 +4,23 @@ import { storyblokEditable } from '@storyblok/astro'
 const { blok } = Astro.props
 ---
 
-<pre {...storyblokEditable(blok)}>{JSON.stringify(blok, null, 2)}</pre>
+<div {...storyblokEditable(blok)} class="bg-gray-50 px-8 py-10 rounded-md">
+  <div class="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
+    {blok.icon}
+  </div>
+
+  <h4 class="font-medium text-gray-700 text-lg mb-4">{blok.title}</h4>
+
+  <p class="font-normal text-gray-500 text-md">{blok.description}</p>
+
+  {blok.link.url && (
+    <div class="relative">
+        <a href={blok.link.url} target={blok.link.target || undefined} rel={blok.link.target ? 'noopener noreferrer' : undefined} class="font-semibold text-gray-500 text-md relative z-10">Read more</a>
+        <span class="w-32 h-1 bg-blue-200 absolute bottom-1 left-0 z-0"></span>
+    </div>
+  )}
+
+  {(blok.sourceName && blok.sourceRole) && (
+    <div class="font-semibold text-gray-500 text-md">{blok.sourceName} <span class="font-medium text-gray-300 text-sm">- {blok.sourceRole}</span></div>
+  )}
+</div>
