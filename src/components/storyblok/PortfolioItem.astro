@@ -1,6 +1,7 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
 import Link from '@components/Link.astro'
+import Markdown from '@components/Markdown.astro'
 
 const { number, blok } = Astro.props
 ---
@@ -10,14 +11,20 @@ const { number, blok } = Astro.props
 
   <span class="w-28 h-0.5 bg-gray-300 mt-5"></span>
 
-  <div>
+  <div class="max-w-screen-lg">
+    {blok.title && (
       <h1 class="font-normal text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>
+    )}
 
-      <p class="font-normal text-gray-500 text-sm md:text-base">{blok.description}</p>
+    {blok.description && (
+      <Markdown classes="font-normal text-gray-500 text-sm md:text-base" content={blok.description} />
+    )}
 
+    {(blok.link.url && blok.screenshot.filename) && (
       <Link link={blok.link} classes="relative">
         <img src={`${blok.screenshot.filename}/m/`} alt="" class="mt-4 rounded shadow-sm" />
         <span class="absolute bottom-4 left-4 bg-white py-2 px-6 rounded">View site</span>
       </Link>
+    )}
   </div>
 </div>

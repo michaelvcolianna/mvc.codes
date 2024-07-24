@@ -1,0 +1,16 @@
+---
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+
+const { content, classes } = Astro.props
+
+const renderedHtml = unified()
+  .use(remarkParse)
+  .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeStringify, { allowDangerousHtml: true })
+  .process(content)
+---
+
+<div class={`markdown ${classes}`} set:html={renderedHtml} />

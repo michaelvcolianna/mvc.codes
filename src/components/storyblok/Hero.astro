@@ -1,6 +1,7 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
 import Link from '@components/Link.astro'
+import Markdown from '@components/Markdown.astro'
 
 const { blok } = Astro.props
 ---
@@ -15,17 +16,27 @@ const { blok } = Astro.props
       </nav>
 
       <div class="text-center">
-        <div class="flex justify-center mb-16">
-          <img src={`${blok.image.filename}/m/`} />
-        </div>
+        {blok.image.filename && (
+          <div class="flex justify-center mb-16">
+            <img src={`${blok.image.filename}/m/`} />
+          </div>
+        )}
 
-        <h1 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">{blok.name}</h1>
+        {blok.name && (
+          <h1 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">{blok.name}</h1>
+        )}
 
-        <h2 class="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8">{blok.title}</h2>
+        {blok.title && (
+          <div class="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8">{blok.title}</div>
+        )}
 
-        <p class="font-normal text-gray-600 text-md md:text-xl mb-16">{blok.description}</p>
+        {blok.description && (
+          <Markdown classes="font-normal text-gray-600 text-md md:text-xl mb-16" content={blok.description} />
+        )}
 
-        <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>
+        {blok.linkedIn.url && (
+          <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>
+        )}
       </div>
     </div>
   </div>

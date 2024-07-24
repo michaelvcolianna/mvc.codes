@@ -1,6 +1,7 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
 import Link from '@components/Link.astro'
+import Markdown from '@components/Markdown.astro'
 
 const { blok } = Astro.props
 ---
@@ -22,9 +23,13 @@ const { blok } = Astro.props
     </div>
   )}
 
-  <h4 class="font-medium text-gray-700 text-lg mb-4">{blok.title}</h4>
+  {blok.title && (
+    <h4 class="font-medium text-gray-700 text-lg mb-4">{blok.title}</h4>
+  )}
 
-  <p class="font-normal text-gray-500 text-md">{blok.description}</p>
+  {blok.description && (
+    <Markdown classes="font-normal text-gray-500 text-md" content={blok.description} />
+  )}
 
   {blok.link.url && (
     <div class="relative">
