@@ -1,0 +1,7 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+
+const { blok } = Astro.props
+---
+
+<pre {...storyblokEditable(blok)}>{JSON.stringify(blok, null, 2)}</pre>
