@@ -1,5 +1,6 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
+import Link from '@components/Link.astro'
 
 const { blok } = Astro.props
 ---
@@ -24,7 +25,7 @@ const { blok } = Astro.props
 
         <p class="font-normal text-gray-600 text-md md:text-xl mb-16">{blok.description}</p>
 
-        <a href={blok.linkedIn.url} target="_blank" rel="noopener noreferrer" class="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</a>
+        <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
+import Link from '@components/Link.astro'
 
 const { blok } = Astro.props
 ---
@@ -27,7 +28,7 @@ const { blok } = Astro.props
 
   {blok.link.url && (
     <div class="relative">
-        <a href={blok.link.url} target={blok.link.target || undefined} rel={blok.link.target ? 'noopener noreferrer' : undefined} class="font-semibold text-gray-500 text-md relative z-10">Read more</a>
+        <Link link={blok.link} classes="font-semibold text-gray-500 text-md relative z-10">Read more</Link>
         <span class="w-32 h-1 bg-blue-200 absolute bottom-1 left-0 z-0"></span>
     </div>
   )}

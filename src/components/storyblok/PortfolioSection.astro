@@ -1,8 +1,32 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
 const { blok } = Astro.props
 ---
 
-<div><strong>{blok.component}</strong></div>
-<pre {...storyblokEditable(blok)}>{JSON.stringify(blok, null, 2)}</pre>
+<section {...storyblokEditable(blok)} class="py-10 md:py-16">
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <div class="flex flex-col lg:flex-row justify-between">
+      {(blok.headline || blok.description) && (
+        <div class="mb-10 lg:mb-0">
+          {blok.headline && (
+            <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.headline}</h1>
+          )}
+
+          {blok.description && (
+            <p class="font-normal text-gray-500 text-xs md:text-base">{blok.description}</p>
+          )}
+        </div>
+      )}
+
+      {blok.items.length > 0 && (
+        <div class="space-y-24">
+          {blok.items.map((item, index) => (
+            <StoryblokComponent number={index} blok={item} />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

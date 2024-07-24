@@ -1,0 +1,13 @@
+---
+const { link, classes } = Astro.props
+
+const href = link.url
+
+const target = link.target || undefined
+
+const rel = target ? 'noopener noreferrer' : undefined
+---
+
+<a href={href} target={target} rel={rel} class={classes}>
+  <slot />
+</a>
