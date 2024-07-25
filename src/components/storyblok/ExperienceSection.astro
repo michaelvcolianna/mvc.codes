@@ -1,27 +1,9 @@
 ---
 import { storyblokEditable } from '@storyblok/astro'
-import Link from '@components/Link.astro'
 import Markdown from '@components/Markdown.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
 const { blok } = Astro.props
-
-const companies = []
-const positions = []
-const years = []
-
-if (blok.items.length > 0) {
-  blok.items.map((item) => {
-    companies.push({
-      name: item.name,
-      url: item.url,
-      location: item.location,
-    })
-
-    positions.push(item.position)
-
-    years.push(item.years)
-  })
-}
 ---
 
 <section {...storyblokEditable(blok)} class="py-10 md:py-16">
@@ -31,36 +13,14 @@ if (blok.items.length > 0) {
     {blok.description && <Markdown classes="font-normal text-gray-600 text-xs md:text-base mb-20" content={blok.description} />}
 
     {blok.items.length > 0 && (
-      <div class="flex flex-col lg:flex-row justify-between">
-        <div class="sr-only">
-          {blok.items.map((item, index) => (
-            <div>
-              <span>Experience item {index + 1} of {blok.items.length}</span>
-              <h3>Company: {item.name}</h3>
-              <p>Location: {item.location}</p>
-              <p>Position: {item.position}</p>
-              <p>Term: {item.years}</p>
-            </div>
-          ))}
-        </div>
-
-        <div aria-hidden="true" class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+      <div class="grid gap-16">
+        <div aria-hidden="true" class="hidden lg:grid grid-cols-3">
           <h3 class="font-medium text-gray-800 text-base uppercase">Company</h3>
-
-          {companies.map((company) => <p class="font-semibold text-gray-700 text-base"><Link link={company.url} classes="inline-block underline">{company.name}</Link> <span class="font-normal text-gray-600">/ {company.location}</span></p>)}
+          <h3 class="font-medium text-center text-gray-800 text-base uppercase">Position</h3>
+          <h3 class="font-medium text-right text-gray-800 text-base uppercase">Term</h3>
         </div>
 
-        <div aria-hidden="true" class="space-y-8 md:space-y-16 mb-16 md:mb-0">
-          <h3 class="font-medium text-gray-800 text-base uppercase">Position</h3>
-
-          {positions.map((position) => <p class="font-normal text-gray-800 text-base">{position}</p>)}
-        </div>
-
-        <div aria-hidden="true" class="space-y-8 md:space-y-16">
-          <h3 class="font-medium text-gray-800 text-base uppercase">Term</h3>
-
-          {years.map((year) => <p class="font-normal text-gray-800 text-base">{year}</p>)}
-        </div>
+        {blok.items.map((item, index) => <StoryblokComponent blok={item} number={index} total={blok.items.length} />)}
       </div>
     )}
   </div>

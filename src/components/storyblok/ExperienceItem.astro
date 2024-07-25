@@ -1,0 +1,12 @@
+---
+import Link from '@components/Link.astro'
+
+const { number, total, blok } = Astro.props
+---
+
+<div class="grid gap-4 lg:gap-0 lg:grid-cols-3">
+  <span class="sr-only">Company {number + 1} of {total}</span>
+  <p class="font-semibold text-gray-700 text-base"><Link link={blok.url} classes="inline-block underline">{blok.name}</Link> <span class="font-normal text-gray-600">/ {blok.location}</span></p>
+  <p class="font-normal text-center text-gray-800 text-base">{blok.position}</p>
+  <p class="font-normal text-right text-gray-800 text-base">{blok.years}</p>
+</div>
