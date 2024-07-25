@@ -12,7 +12,7 @@ const { blok } = Astro.props
       <nav class="flex items-center justify-between mb-40">
         <img src="https://a-us.storyblok.com/f/1020548/61x41/dd1dd606f0/navbar-logo.png/m/" alt="" />
 
-        <a href="/" class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Résumè</a>
+        <a href="/mvc-resume.pdf" class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Résumè</a>
       </nav>
 
       <div class="text-center">
@@ -22,21 +22,13 @@ const { blok } = Astro.props
           </div>
         )}
 
-        {blok.name && (
-          <h1 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">{blok.name}</h1>
-        )}
+        {blok.name && <h1 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">{blok.name}</h1>}
 
-        {blok.title && (
-          <div class="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8">{blok.title}</div>
-        )}
+        {blok.title && <div class="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8">{blok.title}</div>}
 
-        {blok.description && (
-          <Markdown classes="font-normal text-gray-600 text-md md:text-xl mb-16" content={blok.description} />
-        )}
+        {blok.description && <Markdown classes="font-normal text-gray-600 text-md md:text-xl mb-16" content={blok.description} />}
 
-        {blok.linkedIn.url && (
-          <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>
-        )}
+        {blok.linkedIn.url && <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>}
       </div>
     </div>
   </div>

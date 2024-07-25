@@ -4,6 +4,10 @@ import Link from '@components/Link.astro'
 import Markdown from '@components/Markdown.astro'
 
 const { number, blok } = Astro.props
+
+const hasLinks = blok.screenshot.filename || blok.liveSiteUrl.url || blok.repositoryUrl.url
+
+const linkClasses = hasLinks ? 'px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500' : ''
 ---
 
 <div {...storyblokEditable(blok)} class="flex space-x-6">
@@ -12,19 +16,18 @@ const { number, blok } = Astro.props
   <span class="w-28 h-0.5 bg-gray-300 mt-5"></span>
 
   <div class="max-w-screen-lg">
-    {blok.title && (
-      <h1 class="font-normal text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>
-    )}
+    {blok.title && <h1 class="font-normal text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>}
 
-    {blok.description && (
-      <Markdown classes="font-normal text-gray-500 text-sm md:text-base" content={blok.description} />
-    )}
+    {blok.description && <Markdown classes="font-normal text-gray-500 text-sm md:text-base" content={blok.description} />}
 
-    {(blok.link.url && blok.screenshot.filename) && (
-      <Link link={blok.link} classes="relative">
-        <img src={`${blok.screenshot.filename}/m/`} alt="" class="mt-4 rounded shadow-sm" />
-        <span class="absolute bottom-4 left-4 bg-white py-2 px-6 rounded">View site</span>
-      </Link>
+    {hasLinks && (
+      <div class="flex gap-4 mt-8">
+        {blok.screenshot.filename && <Link link={{ url: blok.screenshot.filename, target: '_blank' }} classes={linkClasses}>Screenshot</Link>}
+
+        {blok.liveSiteUrl.url && <Link link={blok.liveSiteUrl} classes={linkClasses}>View Site</Link>}
+
+        {blok.repositoryUrl.url && <Link link={blok.repositoryUrl} classes={linkClasses}>Repository</Link>}
+      </div>
     )}
   </div>
 </div>
