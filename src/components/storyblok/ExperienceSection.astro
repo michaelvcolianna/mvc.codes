@@ -26,26 +26,38 @@ if (blok.items.length > 0) {
 
 <section {...storyblokEditable(blok)} class="py-10 md:py-16">
   <div class="container max-w-screen-xl mx-auto px-4">
-    {blok.title && <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>}
+    {blok.title && <h2 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h2>}
 
     {blok.description && <Markdown classes="font-normal text-gray-600 text-xs md:text-base mb-20" content={blok.description} />}
 
     {blok.items.length > 0 && (
       <div class="flex flex-col lg:flex-row justify-between">
-        <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
-          <div class="font-medium text-gray-800 text-base uppercase">Company</div>
+        <div class="sr-only">
+          {blok.items.map((item, index) => (
+            <div>
+              <span>Experience item {index + 1} of {blok.items.length}</span>
+              <h3>Company: {item.name}</h3>
+              <p>Location: {item.location}</p>
+              <p>Position: {item.position}</p>
+              <p>Term: {item.years}</p>
+            </div>
+          ))}
+        </div>
+
+        <div aria-hidden="true" class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          <h3 class="font-medium text-gray-800 text-base uppercase">Company</h3>
 
           {companies.map((company) => <p class="font-semibold text-gray-700 text-base"><Link link={company.url} classes="inline-block underline">{company.name}</Link> <span class="font-normal text-gray-600">/ {company.location}</span></p>)}
         </div>
 
-        <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
-          <div class="font-medium text-gray-800 text-base uppercase">Position</div>
+        <div aria-hidden="true" class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          <h3 class="font-medium text-gray-800 text-base uppercase">Position</h3>
 
           {positions.map((position) => <p class="font-normal text-gray-800 text-base">{position}</p>)}
         </div>
 
-        <div class="space-y-8 md:space-y-16">
-          <div class="font-medium text-gray-800 text-base uppercase">Term</div>
+        <div aria-hidden="true" class="space-y-8 md:space-y-16">
+          <h3 class="font-medium text-gray-800 text-base uppercase">Term</h3>
 
           {years.map((year) => <p class="font-normal text-gray-800 text-base">{year}</p>)}
         </div>

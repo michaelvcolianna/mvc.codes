@@ -13,7 +13,7 @@ const hasText = blok.headline || blok.description
     <div class="flex flex-col lg:flex-row gap-8 justify-between">
       {hasText && (
         <div class="mb-10 lg:mb-0">
-          {blok.headline && <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.headline}</h1>}
+          {blok.headline && <h2 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">{blok.headline}</h2>}
 
           {blok.description && <Markdown classes="font-normal text-gray-600 text-xs md:text-base" content={blok.description} />}
         </div>
@@ -21,7 +21,7 @@ const hasText = blok.headline || blok.description
 
       {blok.items.length > 0 && (
         <div class="space-y-24">
-          {blok.items.map((item, index) => <StoryblokComponent number={index} blok={item} />)}
+          {blok.items.map((item, index) => <StoryblokComponent number={index} total={blok.items.length} blok={item} />)}
         </div>
       )}
     </div>

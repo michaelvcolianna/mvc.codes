@@ -3,7 +3,7 @@ import { storyblokEditable } from '@storyblok/astro'
 import Link from '@components/Link.astro'
 import Markdown from '@components/Markdown.astro'
 
-const { number, blok } = Astro.props
+const { number, total, blok } = Astro.props
 
 const hasLinks = blok.screenshot.filename || blok.liveSiteUrl.url || blok.repositoryUrl.url
 
@@ -11,12 +11,12 @@ const linkClasses = hasLinks ? 'px-7 py-3 md:px-9 md:py-4 font-medium md:font-se
 ---
 
 <div {...storyblokEditable(blok)} class="flex space-x-6">
-  <h1 class="font-normal text-gray-700 text-3xl md:text-4xl">{String(number + 1).padStart(2, '0')}</h1>
+  <div aria-label={`Portfolio item ${number + 1} of ${total}`} class="font-normal text-gray-700 text-3xl md:text-4xl"><span aria-hidden="true">{String(number + 1).padStart(2, '0')}</span></div>
 
   <span class="w-28 h-0.5 bg-gray-300 mt-5"></span>
 
   <div class="max-w-screen-lg">
-    {blok.title && <h1 class="font-normal text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h1>}
+    {blok.title && <h3 class="font-normal text-gray-700 text-3xl md:text-4xl mb-5">{blok.title}</h3>}
 
     {blok.description && <Markdown classes="font-normal text-gray-600 text-sm md:text-base" content={blok.description} />}
 

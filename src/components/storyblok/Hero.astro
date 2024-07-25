@@ -8,17 +8,11 @@ const { blok } = Astro.props
 
 <section {...storyblokEditable(blok)} class="py-10 md:py-16">
   <div class="container max-w-screen-xl mx-auto px-4">
-    <div class="container max-w-screen-xl mx-auto px-4">
-      <nav class="flex items-center justify-between mb-40">
-        <img src="https://a-us.storyblok.com/f/1020548/61x41/dd1dd606f0/navbar-logo.png/m/" alt="" />
-
-        <a href="/mvc-resume.pdf" class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Résumè</a>
-      </nav>
-
-      <div class="text-center">
+    <div class="container max-w-screen-xl mx-auto px-4 flex flex-col">
+      <div class="text-center order-2">
         {blok.image.filename && (
           <div class="flex justify-center mb-16">
-            <img src={`${blok.image.filename}/m/`} />
+            <img src={`${blok.image.filename}/m/`} alt="" />
           </div>
         )}
 
@@ -29,6 +23,12 @@ const { blok } = Astro.props
         {blok.description && <Markdown classes="font-normal text-gray-700 text-md md:text-xl mb-16" content={blok.description} />}
 
         {blok.linkedIn.url && <Link link={blok.linkedIn} classes="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">View LinkedIn</Link>}
+      </div>
+
+      <div class="flex items-center justify-between mb-40 order-1">
+        <img src="https://a-us.storyblok.com/f/1020548/61x41/dd1dd606f0/navbar-logo.png/m/" alt="" />
+
+        <a href="/mvc-resume.pdf" class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Résumè</a>
       </div>
     </div>
   </div>
