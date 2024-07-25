@@ -21,7 +21,7 @@ const linkClasses = hasLinks ? 'px-7 py-3 md:px-9 md:py-4 font-medium md:font-se
     {blok.description && <Markdown classes="font-normal text-gray-600 text-sm md:text-base" content={blok.description} />}
 
     {hasLinks && (
-      <div class="flex gap-4 mt-8">
+      <div class="flex flex-wrap gap-4 mt-8">
         {blok.screenshot.filename && <Link link={{ url: blok.screenshot.filename, target: '_blank' }} classes={linkClasses}>Screenshot</Link>}
 
         {blok.liveSiteUrl.url && <Link link={blok.liveSiteUrl} classes={linkClasses}>View Site</Link>}
