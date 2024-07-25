@@ -22,14 +22,14 @@ const hasSource = blok.sourceName && blok.sourceRole
 
   {blok.title && <h4 class="font-medium text-gray-700 text-lg mb-4">{blok.title}</h4>}
 
-  {blok.description && <Markdown classes="font-normal text-gray-500 text-md" content={blok.description} />}
+  {blok.description && <Markdown classes="font-normal text-gray-600 text-md" content={blok.description} />}
 
   {blok.link.url && (
     <div class="relative">
-        <Link link={blok.link} classes="font-semibold text-gray-500 text-md relative z-10">Read more</Link>
+        <Link link={blok.link} classes="font-semibold text-gray-600 text-md relative z-10">Read more</Link>
         <span class="w-32 h-1 bg-blue-200 absolute bottom-1 left-0 z-0"></span>
     </div>
   )}
 
-  {hasSource && <div class="font-semibold text-gray-500 text-md">{blok.sourceName} <span class="font-medium text-gray-300 text-sm">- {blok.sourceRole}</span></div>}
+  {hasSource && <div class="font-semibold text-gray-600 text-md">{blok.sourceName} <span class="font-medium text-gray-600 text-sm">- {blok.sourceRole}</span></div>}
 </div>
